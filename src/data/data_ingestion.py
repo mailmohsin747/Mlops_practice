@@ -6,7 +6,6 @@ from sklearn.model_selection import train_test_split
 import yaml
 import logging
 from src.connection import s3_connection
-
 from dotenv import load_dotenv
 load_dotenv() 
 
