@@ -32,7 +32,7 @@
     - src/features/feature_engineering.py
     - src/model/model_building.py
     - src/model/model_evaluation.py
-    - register_model.py
+    - src/model/register_model.py
 18. add file - dvc.yaml (till model evaluation.metrics)
 19. add file - params.yaml
 20. DVC pipeline is ready to run - dvc repro
@@ -44,7 +44,6 @@
 28. Create new dir - flask_app | Inside that, add rest of the files and dir
 29. pip install flask and run the app (dvc push - to push data to S3)
 
-30. pip freeze > requirements.txt
 31. Add .github/workflows/ci.yaml file
 
 32. Create key token on Dagshub for auth: Go to dagshub repo > Your settings > Tokens > Generate    new token
