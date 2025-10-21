@@ -16,8 +16,6 @@
 23.  -Creat S3 bucket
      - upload data
      -Create IAM -> Users ->creat-users-> see vedio day 22--21:25(time)
-         access_key = AKIA4BUW3VQO5DULCQEL
-         secret_key = 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
 24. - pip install dvc[s3] 
     - pip install awscli
     - Set aws cred by typing this command in terminal - aws configure
