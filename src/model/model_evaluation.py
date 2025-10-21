@@ -31,6 +31,8 @@ dagshub_url = "https://dagshub.com"
 repo_owner = "mailmohsin747"
 repo_name = "Mlops_practice"
 
+#dagshub.init(repo_owner=repo_owner, repo_name=repo_name, mlflow=True)
+
 # Set up MLflow tracking URI
 mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
 # -------------------------------------------------------------------------------------
@@ -114,7 +116,7 @@ def save_model_info(run_id: str, model_path: str, file_path: str) -> None:
         raise
 
 def main():
-    mlflow.set_experiment("my-dvc-pipeline")
+    mlflow.set_experiment("my-dvc-pipeline_02")
     with mlflow.start_run() as run:  # Start an MLflow run
         try:
             clf = load_model('./models/model.pkl')
@@ -137,9 +139,11 @@ def main():
                 for param_name, param_value in params.items():
                     mlflow.log_param(param_name, param_value)
             
-            # Log model to MLflow
-            #mlflow.sklearn.log_model(clf, "model")
-            
+            # Instead of mlflow.sklearn.log_model --> Save locally + log as artifact
+            model_save_path = "models/model_logged.pkl"
+            with open(model_save_path, "wb") as f:
+                pickle.dump(clf, f)
+            mlflow.log_artifact(model_save_path, artifact_path="model_artifacts")
             # Save model info
             save_model_info(run.info.run_id, "model", 'reports/experiment_info.json')
             
