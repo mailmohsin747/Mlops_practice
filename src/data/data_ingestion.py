@@ -13,6 +13,7 @@ load_dotenv()
 import os
 AWS_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY")
 AWS_SECRET_KEY = os.getenv("AWS_SECRET_KEY")
+REGION = os.getenv("REGION")
 
 def load_params(params_path: str) -> dict:
     """Load parameters from a YAML file."""
@@ -76,7 +77,7 @@ def main():
         params = load_params(params_path='params.yaml')
         test_size = params['data_ingestion']['test_size']
     
-        s3 = s3_connection.s3_operations("mlops-data-files", AWS_ACCESS_KEY, AWS_SECRET_KEY)
+        s3 = s3_connection.s3_operations("mlops-data-files", AWS_ACCESS_KEY, AWS_SECRET_KEY,REGION)
         df = s3.fetch_file_from_s3("data.csv")
         
         final_df = preprocess_data(df)
