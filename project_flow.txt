@@ -39,6 +39,8 @@
 19. add file - params.yaml
 20. DVC pipeline is ready to run - dvc repro
 21. Once do - dvc status
+            - dvc commit
+            - dvc push
 22. git add - commit - push
 
 28. Create new dir - flask_app | Inside that, add rest of the files and dir
