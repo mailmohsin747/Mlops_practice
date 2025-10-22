@@ -6,6 +6,12 @@ jobs:
   project-testing:
     runs-on: ubuntu-latest
 
+    env:
+      DAGS_HUB_TOKEN : ${{ secrets.DAGS_HUB_TOKEN }}
+      AWS_ACCESS_KEY : ${{ secrets.AWS_ACCESS_KEY }}
+      AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
+      REGION: ${{ secrets.REGION }}
+
     steps:
       - name: checkout code
         uses: actions/checkout@v3
@@ -26,6 +32,12 @@ jobs:
       - name: install dependencies
         run: |
           pip install -r requirements.txt
+
+      - name: Configure AWS credentials (if using boto3)
+        run: |
+          aws configure set aws_access_key_id $AWS_ACCESS_KEY
+          aws configure set aws_secret_access_key $AWS_SECRET_AKEY
+          aws configure set region $REGION
 
       - name: run pipeline
         env:
