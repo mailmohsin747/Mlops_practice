@@ -47,6 +47,14 @@
 31. Add .github/workflows/ci.yaml file
 31. Add dir "tests"&"scripts" and files within. This will contain our test related scripts for CI.
 
+-- run the pipeline: upto dvc repro to check the working
+    - git add .
+    - git commit
+    - git push
+    - go to github-->action  # to see the pipeline
+-- add secretes or keys in the github because env is not tracking. For that
+   setting--> secretes and variables--> action --> new repository
+   
 >>>>> Moving to Docker <<<<<
 32. pip install pipreqs
 33. cd flask_app & do "pipreqs . --force"
